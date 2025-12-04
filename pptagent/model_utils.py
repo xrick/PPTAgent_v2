@@ -50,7 +50,7 @@ def _get_lid_model():
 
 MINERU_API = os.environ.get("MINERU_API", None)
 if MINERU_API is None:
-    logger.warning("MINERU_API is not set, PDF parsing is not available")
+    logger.debug("MINERU_API is not set, PDF parsing is not available")
 
 
 class ModelManager:
@@ -145,7 +145,7 @@ async def parse_pdf(pdf_path: str, output_folder: str):
         output_path (str): The root directory to save the extracted content.
 
     Returns:
-        str: The path to the extracted folder
+        str: The text content extracted from the PDF.
     """
     assert MINERU_API is not None, "MINERU_API is not set"
     os.makedirs(output_folder, exist_ok=True)
@@ -190,6 +190,8 @@ async def parse_pdf(pdf_path: str, output_folder: str):
                         os.makedirs(os.path.dirname(dest_path), exist_ok=True)
                         with zip_ref.open(member) as src, open(dest_path, "wb") as dst:
                             dst.write(src.read())
+
+    return open(join(output_folder, "source.md"), encoding="utf-8").read()
 
 
 def get_image_embedding(

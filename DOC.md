@@ -9,6 +9,7 @@ This documentation provides an overview of the project structure, setup instruct
 
 Table of Contents
 =================
+- [Documentation 📝](#documentation-)
 - [Table of Contents](#table-of-contents)
   - [Recommendations and Requirements 🔬](#recommendations-and-requirements-)
   - [Quick Start 🚀](#quick-start-)
@@ -67,7 +68,6 @@ For a quick test, use the example in `runs/pdf(pptx)/*/source.pdf(pptx)` to save
 We now support MCP server, you can use it to generate presentations via MCP server.
 ```bash
 uv pip install pptagent
-uv pip install python-pptx@git+https://github.com/Force1ess/python-pptx@219513d7d81a61961fc541578c1857d08b43aa2a
 export PPTAGENT_MODEL=openai/gpt-4.1
 export PPTAGENT_API_BASE=http://localhost:8000/v1
 export PPTAGENT_API_KEY=your_key
@@ -84,8 +84,6 @@ Use it in Claude or Cursor:
         "run",
         "--with",
         "pptagent",
-        "--with",
-        "python-pptx@git+https://github.com/Force1ess/python-pptx@219513d7d81a61961fc541578c1857d08b43aa2a",
         "pptagent-mcp"
       ],
       "env": {
@@ -102,7 +100,7 @@ Available tools:
 
 | Tool Name | Description |
 |-----------|-------------|
-| `list_available_templates` | List all available PowerPoint templates |
+| `list_templates` | List all available PowerPoint templates |
 | `set_template` | Select a PowerPoint template by name |
 | `create_slide` | Create a slide with a given layout |
 | `write_slide` | Write the slide elements for generating a PowerPoint slide |
